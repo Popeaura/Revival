@@ -7,8 +7,116 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <span class="logo">LO GO</span>
+                    <h1 class="site-title">Revival Website</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#what-we-do" class="nav-link">What We Do</a></li>
+                    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    <li><a href="#connect" class="nav-link">Connect</a></li>
+                    <li><button class="donate-btn" onclick="handleDonate()">DONATE ❤️</button></li>
+                </ul>
+                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&h=800&fit=crop" alt="Community gathering">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="container">
+                <h1 class="hero-title fade-in">Transforming Hearts, Transforming Nations</h1>
+                <p class="hero-subtitle fade-in">Join us in making a lasting impact in communities across the world</p>
+                <button class="hero-btn fade-in" onclick="handleSubscribe()">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Stand For Section -->
+    <section class="what-we-stand-for">
+        <div class="container">
+            <h2 class="section-title fade-in">What We Stand For</h2>
+            <div class="values-grid">
+                <div class="value-card mission fade-in">
+                    <div class="value-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <h3>Mission</h3>
+                    <p>To spread the Gospel and make disciples of all nations through evangelism, education, and community development.</p>
+                </div>
+                <div class="value-card vision fade-in">
+                    <div class="value-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                        </svg>
+                    </div>
+                    <h3>Vision</h3>
+                    <p>A world where every community experiences transformation through the love and power of Jesus Christ.</p>
+                </div>
+                <div class="value-card values fade-in">
+                    <div class="value-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 2l2 2h8l2-2 2 2-2 2v1.5l-2 2-2-2V7H8v1.5l-2 2-2-2V7l-2-2 2-2zm6 16.5L9 15H6l3-3h6l3 3h-3l-3 3.5z"/>
+                        </svg>
+                    </div>
+                    <h3>Values</h3>
+                    <p>Integrity, compassion, excellence, and unwavering commitment to serving God and humanity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Highlights Section -->
+    <section class="highlights">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Highlights</h2>
+            <div class="highlights-grid">
+                <div class="highlight-card fade-in">
+                    <div class="highlight-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.5 7h-5c-.8 0-1.5.7-1.5 1.5v6c0 .8.7 1.5 1.5 1.5h2v6h4zM12.5 11.5c.8 0 1.5-.7 1.5-1.5s-.7-1.5-1.5-1.5S11 9.2 11 10s.7 1.5 1.5 1.5zM7.5 7h2v7h-2V7zm-2 0h-2v7h2V7z"/>
+                        </svg>
+                    </div>
+                    <h3>No of people Discipled</h3>
+                    <div class="highlight-number">42,413</div>
+                </div>
+                <div class="highlight-card fade-in">
+                    <div class="highlight-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.5 7h-5c-.8 0-1.5.7-1.5 1.5v6c0 .8.7 1.5 1.5 1.5h2v6h4zM12.5 11.5c.8 0 1.5-.7 1.5-1.5s-.7-1.5-1.5-1.5S11 9.2 11 10s.7 1.5 1.5 1.5zM7.5 7h2v7h-2V7zm-2 0h-2v7h2V7z"/>
+                        </svg>
+                    </div>
+                    <h3>No of people saved</h3>
+                    <div class="highlight-number">74,960</div>
+                </div>
+                <div class="highlight-testimonial fade-in">
+                    <blockquote>
+                        "Our support is actively helping the next generation of ministry leaders!"
+                    </blockquote>
+                    <cite>- Community Leader</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- What We Do Section -->
-    <section class="what-we-do">
+    <section id="what-we-do" class="what-we-do">
         <div class="container">
             <h1 class="fade-in">What We Do</h1>
             <div class="services-grid">
@@ -78,7 +186,7 @@
     </section>
 
     <!-- Stories of Transformation -->
-    <section class="stories-section">
+    <section id="testimonials" class="stories-section">
         <div class="container">
             <h2 class="fade-in">Stories of Transformation</h2>
             <div class="stories-grid">
@@ -106,7 +214,7 @@
     </section>
 
     <!-- Contact and Newsletter -->
-    <section class="contact-section">
+    <section id="connect" class="contact-section">
         <div class="container">
             <div class="contact-content">
                 <div class="contact-info fade-in">
