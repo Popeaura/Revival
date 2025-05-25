@@ -44,13 +44,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Add scroll effect to navbar
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('.header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(22, 163, 74, 0.95)';
+            header.style.backdropFilter = 'blur(10px)';
+        } else {
+            header.style.background = 'linear-gradient(135deg, #4ade80 0%, #16a34a 100%)';
+            header.style.backdropFilter = 'none';
+        }
+    });
 });
+
+// Mobile menu toggle
+function toggleMobileMenu() {
+    const navMenu = document.querySelector('.nav-menu');
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    
+    navMenu.classList.toggle('active');
+    mobileToggle.classList.toggle('active');
+}
 
 // Handle donation button click
 function handleDonate() {
     alert('Thank you for your interest in donating! This would typically redirect to a secure payment processor.');
     // In a real implementation, this would redirect to a payment processor
     // window.location.href = 'https://donate.revival.org';
+}
+
+// Handle subscribe button click
+function handleSubscribe() {
+    const email = prompt('Enter your email address to subscribe to our newsletter:');
+    if (email && validateEmail(email)) {
+        alert(`Thank you for subscribing! We'll send updates to ${email}`);
+        // In a real implementation, this would be handled by the newsletter form
+    } else if (email) {
+        alert('Please enter a valid email address.');
+    }
 }
 
 // Handle newsletter form submission
@@ -65,23 +97,25 @@ function handleNewsletter(event) {
     };
     
     // Validate form data
-    if (!data.firstName || !data.lastName || !data.email) {
-        alert('Please fill in all fields.');
-        return;
-    }
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-        alert('Please enter a valid email address.');
+    const errors = validateForm(data);
+    if (errors.length > 0) {
+        alert('Please fix the following errors:\n' + errors.join('\n'));
         return;
     }
     
-    console.log('Newsletter signup:', data);
-    alert(`Thank you ${data.firstName}! You've been subscribed to our newsletter.`);
+    // Show loading state
+    const submitButton = event.target.querySelector('button[type="submit"]');
+    setLoadingState(submitButton, true);
     
-    // Reset form
-    event.target.reset();
+    // Simulate API call
+    setTimeout(() => {
+        console.log('Newsletter signup:', data);
+        alert(`Thank you ${data.firstName}! You've been subscribed to our newsletter.`);
+        
+        // Reset form and loading state
+        event.target.reset();
+        setLoadingState(submitButton, false);
+    }, 1000);
     
     // In a real implementation, you would send this data to your server
     // fetch('/api/newsletter', {
@@ -107,7 +141,45 @@ function openSocial(platform) {
     }
 }
 
-// Add scroll-to-top functionality (optional)
+// Utility Functions
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validateForm(formData) {
+    const errors = [];
+    
+    if (!formData.firstName || !formData.firstName.trim()) {
+        errors.push('First name is required');
+    }
+    
+    if (!formData.lastName || !formData.lastName.trim()) {
+        errors.push('Last name is required');
+    }
+    
+    if (!formData.email || !formData.email.trim()) {
+        errors.push('Email is required');
+    } else if (!validateEmail(formData.email)) {
+        errors.push('Please enter a valid email address');
+    }
+    
+    return errors;
+}
+
+function setLoadingState(button, isLoading) {
+    if (isLoading) {
+        button.disabled = true;
+        button.textContent = 'Loading...';
+        button.style.opacity = '0.7';
+    } else {
+        button.disabled = false;
+        button.textContent = 'Sign Up';
+        button.style.opacity = '1';
+    }
+}
+
+// Add scroll-to-top functionality
 function addScrollToTop() {
     const scrollButton = document.createElement('button');
     scrollButton.innerHTML = '↑';
@@ -126,7 +198,8 @@ function addScrollToTop() {
         font-size: 20px;
         display: none;
         z-index: 1000;
-        transition: opacity 0.3s ease;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     `;
     
     document.body.appendChild(scrollButton);
@@ -147,42 +220,21 @@ function addScrollToTop() {
             behavior: 'smooth'
         });
     });
+
+    // Add hover effect
+    scrollButton.addEventListener('mouseenter', () => {
+        scrollButton.style.background = '#15803d';
+        scrollButton.style.transform = 'scale(1.1)';
+    });
+
+    scrollButton.addEventListener('mouseleave', () => {
+        scrollButton.style.background = '#16a34a';
+        scrollButton.style.transform = 'scale(1)';
+    });
 }
 
 // Initialize scroll-to-top button
 document.addEventListener('DOMContentLoaded', addScrollToTop);
-
-// Add loading state for forms
-function setLoadingState(button, isLoading) {
-    if (isLoading) {
-        button.disabled = true;
-        button.textContent = 'Loading...';
-    } else {
-        button.disabled = false;
-        button.textContent = 'Sign Up';
-    }
-}
-
-// Enhanced form validation
-function validateForm(formData) {
-    const errors = [];
-    
-    if (!formData.firstName.trim()) {
-        errors.push('First name is required');
-    }
-    
-    if (!formData.lastName.trim()) {
-        errors.push('Last name is required');
-    }
-    
-    if (!formData.email.trim()) {
-        errors.push('Email is required');
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-        errors.push('Please enter a valid email address');
-    }
-    
-    return errors;
-}
 
 // Add keyboard navigation support
 document.addEventListener('keydown', (e) => {
@@ -194,8 +246,60 @@ document.addEventListener('keydown', (e) => {
         }
     }
     
-    // Allow Escape key to close any modals (if added later)
+    // Allow Escape key to close mobile menu
     if (e.key === 'Escape') {
-        // Close modal functionality would go here
+        const navMenu = document.querySelector('.nav-menu');
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        if (navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            mobileToggle.classList.remove('active');
+        }
+    }
+});
+
+// Add parallax effect to hero section
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const heroBackground = document.querySelector('.hero-background img');
+    if (heroBackground) {
+        heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
+});
+
+// Add counter animation for highlights
+function animateCounters() {
+    const counters = document.querySelectorAll('.highlight-number');
+    
+    counters.forEach(counter => {
+        const target = parseInt(counter.textContent.replace(/,/g, ''));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            counter.textContent = Math.floor(current).toLocaleString();
+        }, 16);
+    });
+}
+
+// Trigger counter animation when highlights section is visible
+const highlightsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateCounters();
+            highlightsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const highlightsSection = document.querySelector('.highlights');
+    if (highlightsSection) {
+        highlightsObserver.observe(highlightsSection);
     }
 });
