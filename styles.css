@@ -75,40 +75,45 @@
         }
 
         .donate-btn:hover {
-            background: #D32F2F;
+            background: #bda7a7;
         }
 
         /* Section Navigation */
-        .section-nav {
-            position: fixed;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 999;
-            background: rgba(0,0,0,0.8);
-            border-radius: 10px;
-            padding: 1rem 0.5rem;
-        }
+.hero-section {
+    position: relative;
+    background-image: url('your-image.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
 
-        .section-nav button {
-            display: block;
-            width: 40px;
-            height: 40px;
-            margin: 0.5rem 0;
-            border: none;
-            border-radius: 50%;
-            background: #8BC34A;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    z-index: 1;
+}
 
-        .section-nav button:hover,
-        .section-nav button.active {
-            background: #689F38;
-            transform: scale(1.1);
-        }
+.subscribe-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.2rem;
+    background-color: #FF8400;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+    transition: background-color 0.3s ease;
+}
+
+.subscribe-btn:hover {
+    background-color: #FF6F00;
+}
 
         /* Main Content */
         .main-content {
