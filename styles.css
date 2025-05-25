@@ -17,10 +17,314 @@ body {
     padding: 0 20px;
 }
 
+/* Header and Navigation */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    padding: 1rem 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    background: white;
+    color: #16a34a;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.site-title {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}
+
+.donate-btn {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.donate-btn:hover {
+    background: #b91c1c;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.hero-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.hero-btn {
+    background: #16a34a;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.hero-btn:hover {
+    background: #15803d;
+}
+
+/* What We Stand For Section */
+.what-we-stand-for {
+    background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+    padding: 80px 0;
+    color: white;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    color: #1f2937;
+}
+
+.what-we-stand-for .section-title {
+    color: white;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.value-card {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+    transform: scale(1.05);
+}
+
+.value-card.mission {
+    background: #3b82f6;
+}
+
+.value-card.vision {
+    background: #0891b2;
+}
+
+.value-card.values {
+    background: #dc2626;
+}
+
+.value-icon {
+    margin-bottom: 1rem;
+}
+
+.value-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.value-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Our Highlights Section */
+.highlights {
+    background: #f3f4f6;
+    padding: 80px 0;
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.highlight-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.highlight-card:hover {
+    transform: translateY(-5px);
+}
+
+.highlight-icon {
+    color: #16a34a;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.highlight-card h3 {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+}
+
+.highlight-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.highlight-testimonial {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.highlight-testimonial:hover {
+    transform: translateY(-5px);
+}
+
+.highlight-testimonial blockquote {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #4b5563;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.highlight-testimonial cite {
+    color: #6b7280;
+    font-weight: 500;
+}
+
 /* What We Do Section */
 .what-we-do {
     background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
-    padding: 60px 0;
+    padding: 80px 0;
     color: white;
 }
 
@@ -28,6 +332,7 @@ body {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 3rem;
+    text-align: center;
 }
 
 .services-grid {
@@ -51,12 +356,18 @@ body {
 .service-image {
     width: 100%;
     height: 200px;
-    background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: #9ca3af;
+    overflow: hidden;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-image img {
+    transform: scale(1.1);
 }
 
 .service-content {
@@ -104,7 +415,7 @@ body {
 /* Quote Section */
 .quote-section {
     background: #f9fafb;
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 .quote-content {
@@ -119,12 +430,12 @@ body {
     border-radius: 16px;
     overflow: hidden;
     aspect-ratio: 16/9;
-    background: linear-gradient(45deg, #f59e0b, #dc2626);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.2rem;
+}
+
+.quote-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .quote-text {
@@ -147,7 +458,7 @@ body {
 /* Partner Section */
 .partner-section {
     background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
-    padding: 60px 0;
+    padding: 80px 0;
     text-align: center;
     color: white;
 }
@@ -161,7 +472,7 @@ body {
 /* Stories Section */
 .stories-section {
     background: #bae6fd;
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 .stories-section h2 {
@@ -181,13 +492,19 @@ body {
 
 .story-image {
     aspect-ratio: 1;
-    background: linear-gradient(45deg, #e5e7eb, #d1d5db);
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #9ca3af;
-    font-size: 2rem;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.story-image:hover {
+    transform: scale(1.05);
+}
+
+.story-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .stories-tagline {
@@ -200,7 +517,7 @@ body {
 /* Contact Section */
 .contact-section {
     background: #f0fdf4;
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 .contact-content {
@@ -325,8 +642,39 @@ html {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .what-we-do h1 {
+    .nav-menu {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .hero-title {
         font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .value-card {
+        border-radius: 12px;
+        aspect-ratio: auto;
+        padding: 1.5rem;
+    }
+
+    .highlights-grid {
+        grid-template-columns: 1fr;
     }
 
     .services-grid {
@@ -375,15 +723,52 @@ html {
         padding: 0 15px;
     }
 
+    .hero,
+    .what-we-stand-for,
+    .highlights,
     .what-we-do,
     .quote-section,
     .partner-section,
     .stories-section,
     .contact-section {
-        padding: 40px 0;
+        padding: 60px 0;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
     }
 
     .stories-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .value-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .value-card p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobile Menu Animation */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Scroll offset for fixed header */
+section {
+    scroll-margin-top: 80px;
 }
