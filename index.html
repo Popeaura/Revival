@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revival For Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #8BC34A, #689F38);
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2E7D32;
+            background: rgba(255,255,255,0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            line-height: 1.2;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #2E7D32;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #1B5E20;
+        }
+
+        .donate-btn {
+            background: #F44336;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .donate-btn:hover {
+            background: #D32F2F;
+        }
+
+        /* Section Navigation */
+        .section-nav {
+            position: fixed;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            background: rgba(0,0,0,0.8);
+            border-radius: 10px;
+            padding: 1rem 0.5rem;
+        }
+
+        .section-nav button {
+            display: block;
+            width: 40px;
+            height: 40px;
+            margin: 0.5rem 0;
+            border: none;
+            border-radius: 50%;
+            background: #8BC34A;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .section-nav button:hover,
+        .section-nav button.active {
+            background: #689F38;
+            transform: scale(1.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Section 1: Hero */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/hero-crowd.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: bold;
+        }
+
+        .subscribe-btn {
+            background: #8BC34A;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .subscribe-btn:hover {
+            background: #689F38;
+        }
+
+        /* Section 2: What We Stand For */
+        .stand-for-section {
+            background: linear-gradient(135deg, #8BC34A, #689F38);
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        .stand-for-section h2 {
+            font-size: 3.5rem;
+            color: #2E7D32;
+            margin-bottom: 4rem;
+            font-weight: bold;
+        }
+
+        .values-container {
+            display: flex;
+            gap: 4rem;
+            max-width: 1200px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .value-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .value-circle.mission {
+            background: #2196F3;
+        }
+
+        .value-circle.vision {
+            background: #37474F;
+        }
+
+        .value-circle.values {
+            background: #FF5722;
+        }
+
+        .value-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .value-circle h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .value-circle p {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        /* Section 3: Our Highlights */
+        .highlights-section {
+            background: #F5F5F5;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .highlights-section h2 {
+            font-size: 3rem;
+            color: #2E7D32;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .highlights-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 250px;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .stat-card h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2E7D32;
+        }
+
+        .testimonial-quote {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 400px;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        /* Section 4: What We Do */
+        .what-we-do-section {
+            background: linear-gradient(135deg, #8BC34A, #689F38);
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .what-we-do-section h2 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .program-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .program-card.evangelism .program-image {
+            background-image: url('/images/what-we-do-1.png');
+            background-position: 0 0;
+        }
+
+        .program-card.education .program-image {
+            background-image: url('/images/what-we-do-1.png');
+            background-position: -280px 0;
+        }
+
+        .program-card.community .program-image {
+            background-image: url('/images/what-we-do-1.png');
+            background-position: -560px 0;
+        }
+
+        .program-card.economic .program-image {
+            background-image: url('/images/what-we-do-1.png');
+            background-position: -840px 0;
+        }
+
+        .program-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .program-content h3 {
+            font-size: 1.3rem;
+            color: #2E7D32;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .learn-more-btn {
+            background: #2E7D32;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .learn-more-btn:hover {
+            background: #1B5E20;
+        }
+
+        /* Section 5: Video/Quote */
+        .video-quote-section {
+            background: #F5F5F5;
+            padding: 4rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            min-height: 100vh;
+        }
+
+        .video-container {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #FF6B35, #F7931E);
+            background-image: url('/images/video-crowd.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: #F44336;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+
+        .quote-container {
+            max-width: 500px;
+        }
+
+        .quote-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #2E7D32;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .quote-author {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: bold;
+        }
+
+        /* Section 6: Partnership */
+        .partnership-section {
+            background: linear-gradient(135deg, #8BC34A, #689F38);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .partnership-section h2 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .donate-now-btn {
+            background: #2196F3;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .donate-now-btn:hover {
+            background: #1976D2;
+        }
+
+        /* Section 7: Stories of Transformation */
+        .transformation-section {
+            background: #B2DFDB;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .transformation-section h2 {
+            font-size: 2.5rem;
+            color: #2E7D32;
+            margin-bottom: 2rem;
+        }
+
+        .transformation-images {
+            width: 100%;
+            height: 200px;
+            background-image: url('/images/transformation-stories.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .transformation-tagline {
+            font-size: 2rem;
+            color: #2E7D32;
+            font-weight: bold;
+        }
+
+        /* Section 8: Connect */
+        .connect-section {
+            background: #F5F5F5;
+            padding: 4rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .connect-container {
+            display: flex;
+            gap: 4rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .connect-info {
+            flex: 1;
+        }
+
+        .connect-info h2 {
+            font-size: 2.5rem;
+            color: #2E7D32;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .social-icon.facebook { background: #1877F2; }
+        .social-icon.twitter { background: #000; }
+        .social-icon.instagram { background: #E4405F; }
+        .social-icon.youtube { background: #FF0000; }
+
+        .newsletter-signup {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .newsletter-signup h3 {
+            font-size: 1.3rem;
+            color: #2E7D32;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #8BC34A;
+        }
+
+        .signup-btn {
+            background: #8BC34A;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .signup-btn:hover {
+            background: #689F38;
+        }
+
+        /* Section 9: Footer */
+        .footer-section {
+            background: #2E7D32;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .footer-section p {
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .values-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .value-circle {
+                width: 250px;
+                height: 250px;
+            }
+
+            .highlights-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .video-quote-section {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .connect-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">LO<br>GO</div>
+            <ul class="nav-menu">
+                <li><a href="#section1">Home</a></li>
+                <li><a href="#section4">What We Do</a></li>
+                <li><a href="#section7">Testimonials</a></li>
+                <li><a href="#section8">Connect</a></li>
+                <li><a href="#section6" class="donate-btn">DONATE ❤️</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Navigation -->
+    <div class="section-nav">
+        <button onclick="scrollToSection('section1')" class="active" data-section="1">1</button>
+        <button onclick="scrollToSection('section2')" data-section="2">2</button>
+        <button onclick="scrollToSection('section3')" data-section="3">3</button>
+        <button onclick="scrollToSection('section4')" data-section="4">4</button>
+        <button onclick="scrollToSection('section5')" data-section="5">5</button>
+        <button onclick="scrollToSection('section6')" data-section="6">6</button>
+        <button onclick="scrollToSection('section7')" data-section="7">7</button>
+        <button onclick="scrollToSection('section8')" data-section="8">8</button>
+        <button onclick="scrollToSection('section9')" data-section="9">9</button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Section 1: Hero -->
+        <section id="section1" class="section hero-section">
+            <h1>Lorem ipsum dolor<br>sit amet cons</h1>
+            <button class="subscribe-btn">Subscribe</button>
+        </section>
+
+        <!-- Section 2: What We Stand For -->
+        <section id="section2" class="section stand-for-section">
+            <h2>What We Stand For</h2>
+            <div class="values-container">
+                <div class="value-circle mission">
+                    <div class="value-icon">🎯</div>
+                    <h3>Mission</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="value-circle vision">
+                    <div class="value-icon">👁</div>
+                    <h3>Vision</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="value-circle values">
+                    <div class="value-icon">💎</div>
+                    <h3>Values</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Our Highlights -->
+        <section id="section3" class="section highlights-section">
+            <h2>Our Highlights</h2>
+            <div class="highlights-container">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <h3>No of people Discipled</h3>
+                    <div class="stat-number">42,413</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <h3>No of people saved</h3>
+                    <div class="stat-number">74,960</div>
+                </div>
+                <div class="testimonial-quote">
+                    "Your support is actively raising the next generation of missionary leaders!"
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: What We Do -->
+        <section id="section4" class="section what-we-do-section">
+            <h2>What We Do</h2>
+            <div class="programs-grid">
+                <div class="program-card evangelism">
+                    <div class="program-image"></div>
+                    <div class="program-content">
+                        <h3>Evangelism &<br>Discipleship</h3>
+                        <button class="learn-more-btn">Learn More</button>
+                    </div>
+                </div>
+                <div class="program-card education">
+                    <div class="program-image"></div>
+                    <div class="program-content">
+                        <h3>Education</h3>
+                        <button class="learn-more-btn">Learn More</button>
+                    </div>
+                </div>
+                <div class="program-card community">
+                    <div class="program-image"></div>
+                    <div class="program-content">
+                        <h3>Community<br>Development</h3>
+                        <button class="learn-more-btn">Learn More</button>
+                    </div>
+                </div>
+                <div class="program-card economic">
+                    <div class="program-image"></div>
+                    <div class="program-content">
+                        <h3>Economic<br>Empowerment</h3>
+                        <button class="learn-more-btn">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Video/Quote -->
+        <section id="section5" class="section video-quote-section">
+            <div class="video-container">
+                <div class="play-button"></div>
+            </div>
+            <div class="quote-container">
+                <p class="quote-text">"We must work the works of Him Who sent Me and be busy with His business while it is daylight; night is coming on, when no man can work."</p>
+                <p class="quote-author">- Jesus (John 9:4, AMPC)</p>
+            </div>
+        </section>
+
+        <!-- Section 6: Partnership -->
+        <section id="section6" class="section partnership-section">
+            <h2>Partner with us today!</h2>
+            <button class="donate-now-btn">Donate Now!</button>
+        </section>
+
+        <!-- Section 7: Stories of Transformation -->
+        <section id="section7" class="section transformation-section">
+            <h2>Stories of Transformation</h2>
+            <div class="transformation-images"></div>
+            <p class="transformation-tagline">Transformed Hearts Transform Nations</p>
+        </section>
+
+        <!-- Section 8: Connect -->
+        <section id="section8" class="section connect-section">
+            <div class="connect-container">
+                <div class="connect-info">
+                    <h2>Connect With Us</h2>
+                    <div class="contact-item">9am-5pm EST, M-F</div>
+                    <div class="contact-item">P.O. BOX 00-Nairobi</div>
+                    <div class="contact-item">info@revival.org</div>
+                    <div class="contact-item">1-941-444-9940</div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon facebook">f</a>
+                        <a href="#" class="social-icon twitter">X</a>
+                        <a href="#" class="social-icon instagram">📷</a>
+                        <a href="#" class="social-icon youtube">▶</a>
+                    </div>
+                </div>
+                <div class="newsletter-signup">
+                    <h3>Be inspired with amazing stories from the field and sign up for our Newsletter!</h3>
+                    <form>
+                        <div class="form-row">
+                            <input type="text" class="form-input" placeholder="First Name">
+                            <input type="text" class="form-input" placeholder="Last Name">
+                        </div>
+                        <input type="email" class="form-input" placeholder="Email Address">
+                        <button type="submit" class="signup-btn">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Footer -->
+        <section id="section9" class="section footer-section">
+            <p>© Revival For Community 2025</p>
+            <p>EIN: 47-5225697</p>
+        </section>
+    </main>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Update active navigation button based on scroll position
+        function updateActiveSection() {
+            const sections = document.querySelectorAll('.section');
+            const navButtons = document.querySelectorAll('.section-nav button');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    currentSection = section.id;
+                }
+            });
+            
+            navButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.getAttribute('data-section') === currentSection.replace('section', '')) {
+                    button.classList.add('active');
+                }
+            });
+        }
+
+        // Listen for scroll events
+        window.addEventListener('scroll', updateActiveSection);
+
+        // Initialize
+        updateActiveSection();
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            const currentActive = document.querySelector('.section-nav button.active');
+            const currentNumber = parseInt(currentActive.getAttribute('data-section'));
+            
+            if (e.key === 'ArrowDown' && currentNumber < 9) {
+                scrollToSection(`section${currentNumber + 1}`);
+            } else if (e.key === 'ArrowUp' && currentNumber > 1) {
+                scrollToSection(`section${currentNumber - 1}`);
+            }
+        });
+    </script>
+</body>
+</html>
